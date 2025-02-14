@@ -3,7 +3,7 @@
 <head>
     <title>Will you be my valentine?</title>
     <style>
-         .instruction {
+        .instruction {
             position: fixed;
             top: 20px;
             right: 20px;
@@ -16,6 +16,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             z-index: 1000;
         }
+        
         body {
             margin: 0;
             padding: 0;
@@ -49,8 +50,10 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            border-radius: 15px;
-            overflow: hidden;
+            border-radius: 50px;
+            border-color: white;
+            border-style: round;
+           
         }
 
         .front_img {
@@ -74,15 +77,15 @@
         }
 
         .writing_area {
-              flex-grow: 1;
-              border: 2px dashed #ff69b4;
-              margin: 15px 0;
-              padding: 20px;
-              font-family: 'Courier New', Courier, monospace;
-              font-size: 1.2em;
-              color: #333;
-              width: 90%;
-          }
+            flex-grow: 1;
+            border: 2px dashed #ff69b4;
+            margin: 15px 0;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2em;
+            color: #333;
+            width: 90%;
+        }
 
         .button-container {
             display: none;
@@ -125,7 +128,7 @@
             </div>
             <div class="back_card">
                 <h2 class="message">To My Love 💖</h2>
-              <div class="writing_area">
+                <div class="writing_area">
                     <text>I know I'm a bit "late," but this was actually done on purpose. I wanted to make the moment a lot more special by waiting until 14/02/2025 02:14. To be honest, I was planning on waiting until 14:02, but everyone said that was a bit too far, lol. I do apologize for the wait. Aaaaannnnywwwaaayyyssss... 
                         <br><b>Will you be my valentine and make me the happiest man in the world?</b></text>
                 </div>
@@ -137,6 +140,8 @@
         <button class="yes-btn">YES</button>
         <button class="no-btn">NO</button>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 
     <script>
         const yesBtn = document.querySelector(".yes-btn");
@@ -155,16 +160,22 @@
         }
 
         noBtn.addEventListener("mouseover", () => {
-            
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
             noBtn.style.position = "fixed";
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
             
-            
             yesSize += 0.3; 
             yesBtn.style.transform = `scale(${yesSize})`;
+        });
+
+        yesBtn.addEventListener("click", () => {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
         });
     </script>
 </body>

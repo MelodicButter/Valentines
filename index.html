@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Will you be my valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: pink;
+        }
+
+        .valentines_card {
+            width: 100%;
+            max-width: 600px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card_inner {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 80%; 
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .front_card, .back_card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .front_img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .back_card {
+            transform: rotateX(180deg);
+            background: white;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flipped .card_inner {
+            transform: rotateX(180deg);
+        }
+
+        .writing_area {
+              flex-grow: 1;
+              border: 2px dashed #ff69b4;
+              margin: 15px 0;
+              padding: 20px;
+              font-family: 'Courier New', Courier, monospace;
+              font-size: 1.2em;
+              color: #333;
+              width: 90%;
+          }
+
+        .button-container {
+            display: none;
+            flex-direction: row;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .flipped + .button-container {
+            display: flex;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        button.yes-btn {
+            background: #e94d58;
+            color: white;
+        }
+
+        button.no-btn {
+            background: white;
+            color: #e94d58;
+            border: 2px solid #e94d58;
+        }
+    </style>
+</head>
+<body>
+    <div class="valentines_card" onclick="flipCard()">
+        <div class="card_inner">
+            <div class="front_card">
+                <img src="Assets/Postcard.png" class="front_img">   
+            </div>
+            <div class="back_card">
+                <h2 class="message">To My Love 💖</h2>
+              <div class="writing_area">
+                    <text>I know I'm a bit "late," but this was actually done on purpose. I wanted to make the moment a lot more special by waiting until 14/02/2025 02:14. To be honest, I was planning on waiting until 14:02, but everyone said that was a bit too far, lol. I do apologize for the wait. Aaaaannnnywwwaaayyyssss... 
+                        <br><b>Will you be my valentine and make me the happiest man in the world?</b></text>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="button-container" id="buttons">
+        <button class="yes-btn">YES</button>
+        <button class="no-btn">NO</button>
+    </div>
+
+    <script>
+        const yesBtn = document.querySelector(".yes-btn");
+        const noBtn = document.querySelector(".no-btn");
+        const card = document.querySelector(".valentines_card");
+        const buttons = document.getElementById("buttons");
+        let yesSize = 1; // Initial size multiplier for the yes button
+
+        function flipCard() {
+            card.classList.toggle("flipped");
+            if (card.classList.contains("flipped")) {
+                buttons.style.display = "flex";
+            } else {
+                buttons.style.display = "none";
+            }
+        }
+
+        noBtn.addEventListener("mouseover", () => {
+            // Make NO button move randomly
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
+            noBtn.style.position = "fixed";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+            
+            // Make YES button grow
+            yesSize += 0.3; // Increase size multiplier
+            yesBtn.style.transform = `scale(${yesSize})`;
+        });
+    </script>
+</body>
+</html>

@@ -3,6 +3,19 @@
 <head>
     <title>Will you be my valentine?</title>
     <style>
+         .instruction {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #ff69b4;
+            font-family: Arial, sans-serif;
+            font-size: 1.2em;
+            background: black;
+            padding: 10px 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
         body {
             margin: 0;
             padding: 0;
@@ -104,6 +117,7 @@
     </style>
 </head>
 <body>
+    <div class="instruction">Please click on the card!!!</div>
     <div class="valentines_card" onclick="flipCard()">
         <div class="card_inner">
             <div class="front_card">

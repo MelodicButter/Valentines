@@ -129,7 +129,7 @@
         const noBtn = document.querySelector(".no-btn");
         const card = document.querySelector(".valentines_card");
         const buttons = document.getElementById("buttons");
-        let yesSize = 1; // Initial size multiplier for the yes button
+        let yesSize = 1; 
 
         function flipCard() {
             card.classList.toggle("flipped");
@@ -141,15 +141,15 @@
         }
 
         noBtn.addEventListener("mouseover", () => {
-            // Make NO button move randomly
+            
             const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 100);
             const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 100);
             noBtn.style.position = "fixed";
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
             
-            // Make YES button grow
-            yesSize += 0.3; // Increase size multiplier
+            
+            yesSize += 0.3; 
             yesBtn.style.transform = `scale(${yesSize})`;
         });
     </script>
